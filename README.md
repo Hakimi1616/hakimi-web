@@ -1,5 +1,5 @@
 # hakimi-web
-This is the beggin# ZIYACH OS | Next-Gen E-Commerce Ecosystem 
+This is the beggin# HAKIMI ZIYACH OS | Next-Gen E-Commerce Ecosystem 
 
 **ZIYACH OS** is a high-performance, professional-grade e-commerce web application designed for the modern era. Developed with a focus on **User Experience (UX)**, **Clean Code**, and **Scalable Logic**, this project demonstrates a complete product lifecycle management—from dynamic inventory display to a secure checkout simulation.
 
@@ -55,4 +55,4 @@ This is the beggin# ZIYACH OS | Next-Gen E-Commerce Ecosystem
 This project was developed for the **2026 Software Engineering Competition**. All product images are sourced from professional open-source repositories for demonstration purposes only.
 
 ---
-**© 2026 HAKIMI ZIYACH SYSTEMS INC. All Rights Reserved.**ing no back just upgrade it daily!!!
+**© 2026 HAKIMI ZIYACH WEB. All Rights Reserved.**ing no back just upgrade it daily!!!
