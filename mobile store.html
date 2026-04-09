@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAKIMI ZIYACH | Ultimate Tech Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'] },
+                    colors: { brand: '#0066FF', dark: '#050505' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .product-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-12px) scale(1.02); }
+        .gradient-text { background: linear-gradient(90deg, #0066FF, #6600FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .modal-blur { backdrop-filter: blur(8px); background: rgba(0,0,0,0.4); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 overflow-x-hidden">
+
+    <nav class="glass-nav sticky top-0 z-[100] py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center gap-12">
+            <h1 class="text-3xl font-black tracking-tighter gradient-text">ZIYACH<span class="text-black">.HQ</span></h1>
+            <div class="hidden lg:flex gap-8 text-sm font-medium text-slate-500">
+                <a href="#store" class="hover:text-brand transition">Marketplace</a>
+                <a href="#" class="hover:text-brand transition">Collections</a>
+                <a href="#" class="hover:text-brand transition">Support</a>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <div class="hidden md:flex bg-slate-100 rounded-full px-4 py-2 items-center gap-3">
+                <i class="fas fa-search text-slate-400"></i>
+                <input type="text" id="search" placeholder="Search tech..." class="bg-transparent border-none focus:ring-0 text-sm w-48">
+            </div>
+            
+            <button onclick="toggleCart()" class="relative group p-2">
+                <i class="fas fa-shopping-bag text-2xl group-hover:text-brand transition"></i>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="relative pt-20 pb-32 px-6 overflow-hidden">
+        <div class="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative z-10">
+                <span class="inline-block bg-blue-50 text-brand px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-widest uppercase">2026 Limited Edition</span>
+                <h2 class="text-6xl md:text-8xl font-black leading-[0.9] mb-8">Hardware for the <br><span class="gradient-text">Future.</span></h2>
+                <p class="text-lg text-slate-500 max-w-md mb-10 leading-relaxed">Experience the next generation of professional gear. Engineered by HAKIMI ZIYACH for performance-driven developers.</p>
+                <div class="flex gap-4">
+                    <a href="#store" class="bg-brand text-white px-10 py-5 rounded-2xl font-bold shadow-2xl shadow-blue-500/40 hover:scale-105 transition">Start Shopping</a>
+                    <button class="bg-white border border-slate-200 px-10 py-5 rounded-2xl font-bold hover:bg-slate-50 transition">Read Specs</button>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -top-20 -right-20 w-80 h-80 bg-brand/20 rounded-full blur-[100px]"></div>
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800" class="rounded-[3rem] shadow-2xl relative z-10 transform -rotate-3 hover:rotate-0 transition duration-700">
+            </div>
+        </div>
+    </section>
+
+    <section id="store" class="container mx-auto px-6 py-24">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+            <div>
+                <h3 class="text-4xl font-bold mb-2">The Marketplace</h3>
+                <p class="text-slate-400">Filtering <span id="item-count">0</span> premium assets</p>
+            </div>
+            <div class="flex flex-wrap gap-4">
+                <input type="range" id="price-filter" min="0" max="4000" value="4000" class="w-48 accent-brand">
+                <span class="text-sm font-bold">Under $<span id="price-val">4000</span></span>
+            </div>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            </div>
+    </section>
+
+    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-full md:w-[480px] bg-white shadow-2xl translate-x-full transition-transform duration-500 z-[200] flex flex-col">
+        <div class="p-10 flex justify-between items-center border-b">
+            <h2 class="text-3xl font-bold italic">Bag</h2>
+            <button onclick="toggleCart()" class="text-slate-300 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
+        </div>
+        <div id="cart-list" class="flex-grow p-10 overflow-y-auto space-y-8">
+            </div>
+        <div class="p-10 bg-slate-50 border-t">
+            <div class="flex justify-between text-3xl font-black mb-8">
+                <span>Total</span>
+                <span class="text-brand">$<span id="total-price">0.00</span></span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-brand text-white py-6 rounded-2xl font-bold text-lg hover:bg-blue-700 shadow-xl shadow-blue-500/20 active:scale-95 transition">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <div id="modal" class="fixed inset-0 z-[300] modal-blur hidden flex items-center justify-center p-6">
+        <div class="bg-white w-full max-w-4xl rounded-[3rem] overflow-hidden shadow-2xl relative flex flex-col md:flex-row">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-red-500 z-50"><i class="fas fa-times text-2xl"></i></button>
+            <div class="md:w-1/2 bg-slate-100">
+                <img id="modal-img" src="" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-1/2 p-12">
+                <span id="modal-cat" class="text-brand font-bold text-xs uppercase tracking-widest">Category</span>
+                <h4 id="modal-title" class="text-4xl font-black mt-4 mb-6 leading-tight italic">Product Name</h4>
+                <p id="modal-desc" class="text-slate-500 leading-relaxed mb-8">This is a high-performance hardware device designed by Hakimi Ziyach. It features the latest neural processing technology and aerospace-grade materials.</p>
+                <div class="flex items-center justify-between mb-10">
+                    <span id="modal-price" class="text-3xl font-black text-brand">$0.00</span>
+                    <span id="modal-stock" class="text-slate-400 font-bold text-sm">Stock: 0</span>
+                </div>
+                <button id="modal-add-btn" class="w-full bg-brand text-white py-5 rounded-2xl font-bold hover:bg-blue-700 transition">Add to Bag</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-black text-white py-20 px-6">
+        <div class="container mx-auto text-center">
+            <h5 class="text-4xl font-black mb-4 gradient-text"> HAKIMI ZIYACH OS</h5>
+            <p class="text-slate-500 max-w-md mx-auto mb-10 text-sm">Revolutionizing global commerce through high-fidelity digital solutions. Developed by <span class="text-white font-bold">HAKIMI ZIYACH</span></p>
+            <div class="flex justify-center gap-8 text-2xl mb-12">
+                <i class="fab fa-github hover:text-brand cursor-pointer"></i>
+                <i class="fab fa-linkedin hover:text-brand cursor-pointer"></i>
+                <i class="fab fa-twitter hover:text-brand cursor-pointer"></i>
+            </div>
+            <p class="text-xs text-slate-700 font-italic uppercase tracking-[0.3em]">© 2025 Hakimi Ziyach Website.</p>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "MacBook Pro M3 Ultra", cat: "Computers", price: 3499, stock: 4, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600" },
+            { id: 2, name: "Pro Audio Studio Head", cat: "Audio", price: 699, stock: 15, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600" },
+            { id: 3, name: "Titanium Smart Frame", cat: "Wearables", price: 899, stock: 0, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" },
+            { id: 4, name: "Mechanical Core v2", cat: "Peripherals", price: 299, stock: 20, img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=600" },
+            { id: 5, name: "Infinite Display 32\"", cat: "Displays", price: 1599, stock: 3, img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600" },
+            { id: 6, name: "Portable Sound Reactor", cat: "Audio", price: 450, stock: 8, img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600" },
+            { id: 7, name: "Haptic VR Interface", cat: "Gaming", price: 1200, stock: 6, img: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=600" },
+            { id: 8, name: "Data Hub Elite", cat: "Peripherals", price: 199, stock: 45, img: "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600" }
+        ];
+
+        let cart = [];
+
+        function renderProducts(data = products) {
+            const grid = document.getElementById('product-grid');
+            document.getElementById('item-count').innerText = data.length;
+            grid.innerHTML = data.map(p => `
+                <div class="product-card group bg-white rounded-[3rem] p-5 shadow-sm hover:shadow-2xl border border-slate-100">
+                    <div class="relative h-72 rounded-[2.5rem] overflow-hidden mb-8 bg-slate-50">
+                        <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <button onclick="viewDetails(${p.id})" class="bg-white text-black h-14 w-14 rounded-full hover:bg-brand hover:text-white transition"><i class="fas fa-expand"></i></button>
+                            <button onclick="${p.stock > 0 ? `addToCart(${p.id})` : ''}" class="bg-white text-brand h-14 w-14 rounded-full hover:bg-black hover:text-white transition"><i class="fas fa-plus"></i></button>
+                        </div>
+                        ${p.stock === 0 ? '<div class="absolute top-6 left-6 bg-red-600 text-white text-[10px] px-4 py-1.5 rounded-full font-black uppercase tracking-tighter">Depleted</div>' : ''}
+                    </div>
+                    <div class="px-2">
+                        <p class="text-xs font-bold text-brand uppercase mb-2 tracking-widest">${p.cat}</p>
+                        <h4 class="text-2xl font-black mb-4 italic truncate">${p.name}</h4>
+                        <div class="flex justify-between items-center">
+                            <span class="text-3xl font-black">$${p.price.toLocaleString()}</span>
+                            <span class="text-[10px] font-bold text-slate-400">STOCK: ${p.stock}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Search & Filter Logic
+        document.getElementById('search').addEventListener('input', (e) => filterData());
+        document.getElementById('price-filter').addEventListener('input', (e) => {
+            document.getElementById('price-val').innerText = e.target.value;
+            filterData();
+        });
+
+        function filterData() {
+            const term = document.getElementById('search').value.toLowerCase();
+            const price = document.getElementById('price-filter').value;
+            const filtered = products.filter(p => p.name.toLowerCase().includes(term) && p.price <= price);
+            renderProducts(filtered);
+        }
+
+        // Cart Actions
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('translate-x-full'); }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push({...product});
+            updateCartUI();
+            if(window.innerWidth > 768) toggleCart();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const list = document.getElementById('cart-list');
+            list.innerHTML = cart.map((item, index) => `
+                <div class="flex items-center gap-6 group">
+                    <img src="${item.img}" class="h-24 w-24 rounded-3xl object-cover shadow-lg">
+                    <div class="flex-grow">
+                        <h5 class="font-black text-lg italic">${item.name}</h5>
+                        <p class="text-brand font-bold text-xl">$${item.price.toLocaleString()}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-slate-200 group-hover:text-red-500 transition"><i class="fas fa-trash-alt text-xl"></i></button>
+                </div>
+            `).join('');
+            const total = cart.reduce((s, i) => s + i.price, 0);
+            document.getElementById('total-price').innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2});
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        // Modal Logic
+        function viewDetails(id) {
+            const p = products.find(i => i.id === id);
+            document.getElementById('modal-img').src = p.img;
+            document.getElementById('modal-title').innerText = p.name;
+            document.getElementById('modal-cat').innerText = p.cat;
+            document.getElementById('modal-price').innerText = `$${p.price.toLocaleString()}`;
+            document.getElementById('modal-stock').innerText = `Stock Available: ${p.stock}`;
+            document.getElementById('modal-add-btn').onclick = () => { if(p.stock > 0) addToCart(p.id); closeModal(); };
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+        function checkout() {
+            if(cart.length === 0) return alert("Bag is empty!");
+            alert("🔒 Secure Gateway Initialized. Thank you for choosing Hakimi Ziyach Systems.");
+            cart = []; updateCartUI(); toggleCart();
+        }
+
+        // Start
+        renderProducts();
+    </script>
+</body>
+</html>
