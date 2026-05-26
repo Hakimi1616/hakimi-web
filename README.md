@@ -1,12 +1,12 @@
-# hakimi-web
-This is the beggin# HAKIMI ZIYACH OS | Next-Gen E-Commerce Ecosystem 
+# Elnatan-web
+This is the beggin# Elnatan Wuletaw OS | Next-Gen E-Commerce Ecosystem 
 
 **ZIYACH OS** is a high-performance, professional-grade e-commerce web application designed for the modern era. Developed with a focus on **User Experience (UX)**, **Clean Code**, and **Scalable Logic**, this project demonstrates a complete product lifecycle management—from dynamic inventory display to a secure checkout simulation.
 
 ---
 
 ## 👨‍💻 Developer Information
-* **Developer Name:** HAKIMI ZIYACH
+* **Developer Name:** Elnatan Wuletaw
 * **Role:** Lead Software Engineer & Architect
 * **Year:** 2026
 * **Specialization:** Full-Stack Systems Development
@@ -43,7 +43,7 @@ This is the beggin# HAKIMI ZIYACH OS | Next-Gen E-Commerce Ecosystem
 ---
 
 ## 📖 Installation & Usage
-1.  Clone the repository or download the `ziyach_ultimate_store.html` file.
+1.  Clone the repository or download the `Elnatan_ultimate_store.html` file.
 2.  Open the file in any modern web browser (Chrome, Firefox, or Edge).
 3.  **To Add Items:** Click the "+" icon or the "Add to Collection" button.
 4.  **To Filter:** Use the search bar or the price slider to narrow down your tech selection.
@@ -55,4 +55,4 @@ This is the beggin# HAKIMI ZIYACH OS | Next-Gen E-Commerce Ecosystem
 This project was developed for the **2026 Software Engineering Competition**. All product images are sourced from professional open-source repositories for demonstration purposes only.
 
 ---
-**© 2026 HAKIMI ZIYACH WEB. All Rights Reserved.**ing no back just upgrade it daily!!!
+**© 2026 Elnatan Wuletaw WEB. All Rights Reserved.**ing no back just upgrade it daily!!!
